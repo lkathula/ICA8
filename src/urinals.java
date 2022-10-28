@@ -5,7 +5,14 @@ import java.util.Scanner;
 public class urinals {
     public static boolean goodString(char[] s)
     {
-        return false;
+        for (int i=0;i<s.length-1;i++)
+        {
+            if(s[i]=='1'&&s[i+1]=='1')
+            {
+                return false;
+            }
+        }
+        return true;
     }
     public static int countUrinals(char[] inp)
     {
@@ -13,11 +20,11 @@ public class urinals {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner sc=new Scanner(System.in);
         Scanner inFile=new Scanner(new FileReader("urinal.dat"));
         String finp=inFile.useDelimiter("\\A").next(); //For reading input from file and converting the content into a string
-        char[] fileinp=finp.toCharArray();
-        String input=sc.next(); //for reading input from keyboard.
-        char[] inp=input.toCharArray();
+        char[] c={'0','0','0','0'};
+        System.out.println(goodString(c));
+
+
     }
 }
