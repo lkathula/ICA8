@@ -1,5 +1,7 @@
-import java.io.FileNotFoundException;
+
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class urinals {
@@ -63,11 +65,36 @@ public class urinals {
         return free;
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
+
         Scanner inFile=new Scanner(new FileReader("urinal.dat"));
-        String finp=inFile.useDelimiter("\\A").next(); //For reading input from file and converting the content into a string
+
+        String input=inFile.useDelimiter("\\A").next();
+
+        String[] s=input.split("\r\n");
+        FileWriter fw = new FileWriter("rule.txt");
+
+
+        for(int i=0;i<s.length;i++)
+        {
+            char[] inp=s[i].toCharArray();
+            int free=0;
+            if(!goodString(inp))
+            {
+                free=-1;
+            }
+            else
+            {
+                free=countUrinals(inp);
+            }
 
 
 
+            String x= String.valueOf(free);
+            fw.write(x);
+            fw.write("\n");
+
+            System.out.println(free);
     }
-}
+        fw.close();
+}}
